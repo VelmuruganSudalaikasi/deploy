@@ -18,27 +18,27 @@ print(f"Current working directory: {os.getcwd()}")
 def load_data(topic):
     # Mapping the topic to its respective CSV file
     file_mapping = {
-        'Breast Cancer': 'Breast cancer.csv',  # Ensure file names match exactly
-        'Cancer Prevention': 'Cancer prevention.csv', 
-        'Cancer survivors': 'Cancer survivors.csv',
-        'Cancer': 'Cancer Survivors.csv',
+        'Breast Cancer': 'Breast Cancer.csv',  # Ensure file names match exactly
+        'Cancer Prevention': 'Cancer Prevention.csv',
+        #'Cancer survivors': 'Cancer survivors.csv',
+        'Cancer': 'Cancer.csv',
         'Complementary and alternative medicine':'Complementary and alternative medicine.csv',
         'Diagnosis and cancer':'Diagnosis and cancer.csv',
         'Ematology':'Ematology.csv',
         'Environment and cancer':'Environment and cancer.csv',
         'Epidemiology':'Epidemiology.csv',
-        'Epigenetic':'Epigenetic.csv',
+        #'Epigenetic':'Epigenetic.csv',
         'Gastrointestinal cancer':'Gastrointestinal cancer.csv',
-        'Genitourinary cancer':'Genitourinary cancer.csv',
+        #'Genitourinary cancer':'Genitourinary cancer.csv',
         'Geriatric oncology':'Geriatric oncology.csv',
         'Gynaecological cancer':'Gynaecological cancer.csv',
         'Haematological oncology':'Haematological oncology.csv',
         'Head and neck cancer':'Head and neck cancer.csv',
         'HIV and cancer':'HIV and cancer.csv',
-        'Immunoncology':'Immunoncology.csv',
+        #'Immunoncology':'Immunoncology.csv',
         'Lung cancer':'Lung cancer.csv',
         'Medical oncology':'Medical oncology.csv',
-        'Microbiota and cancer':'Microbiota and cancer.csv',
+        #'Microbiota and cancer':'Microbiota and cancer.csv',
         'Molecular diagnosis':'Molecular diagnosis.csv',
         'Nutrition and cancer':'Nutrition and cancer.csv',
         'Otolaryngology':'Otolaryngology.csv',
@@ -49,10 +49,9 @@ def load_data(topic):
         'Radiotherapy':'Radiotherapy.csv',
         'Skin cancer':'Skin cancer.csv',
         'Surgical oncology':'Surgical oncology.csv',
-        'Translational research':'Translational research.csv',
+        #'Translational research':'Translational research.csv',
         'Virus and cancer':'Virus and cancer.csv'
-    }
-    
+ }
     # Construct the absolute file path
     file_path = os.path.join(DATA_FOLDER, file_mapping[topic])
     print(f"File readable: {os.access(file_path, os.R_OK)}")
@@ -81,7 +80,8 @@ def generate_chart(data, chart_type):
 # Route for the homepage
 @app.route("/", methods=['GET', 'POST'])
 def index():
-    topics = ['Breast Cancer', 'Cancer Prevention','Cancer survivors', 'Cancer','Complementary and alternative medicine','Diagnosis and cancer','Ematology','Environment and cancer','Epidemiology','Epigenetic','Gastrointestinal cancer','Genitourinary cancer','Geriatric oncology','Gynaecological cancer','Haematological oncology','Head and neck cancer','HIV and cancer','Immunoncology','Lung cancer','Medical oncology','Microbiota and cancer','Molecular diagnosis','Nutrition and cancer','Otolaryngology','Pediatric oncology and onco-haematology','Pharmacoeconomics','Pharmacogenomics','Psyco-oncology','Radiotherapy','Skin cancer','Surgical oncology','Translational research','Virus and cancer']  # List of topics for the dropdown
+      #topics = ['Breast Cancer', 'Cancer Prevention','Cancer survivors', 'Cancer','Complementary and alternative medicine','Diagnosis and cancer','Ematology','Environment and cancer','Epidemiology','Epigenetic','Gastrointestinal cancer','Genitourinary cancer','Geriatric oncology','Gynaecological cancer','Haematological oncology','Head and neck cancer','HIV and cancer','Immunoncology','Lung cancer','Medical oncology','Microbiota and cancer','Molecular diagnosis','Nutrition and cancer','Otolaryngology','Pediatric oncology and onco-haematology','Pharmacoeconomics','Pharmacogenomics','Psyco-oncology','Radiotherapy','Skin cancer','Surgical oncology','Translational research','Virus and cancer'] List of topics for the dropdown
+    topics = ['Breast Cancer', 'Cancer Prevention','Cancer','Complementary and alternative medicine','Diagnosis and cancer','Ematology','Environment and cancer','Epidemiology','Gastrointestinal cancer','Geriatric oncology','Gynaecological cancer','Haematological oncology','Head and neck cancer','HIV and cancer','Lung cancer','Medical oncology','Molecular diagnosis','Nutrition and cancer','Otolaryngology','Pediatric oncology and onco-haematology','Pharmacoeconomics','Pharmacogenomics','Psyco-oncology','Radiotherapy','Skin cancer','Surgical oncology','Virus and cancer'] 
     chart_types = ['Bar', 'Line', 'Pie']  # List of chart types
     
     selected_topic = request.form.get('topic') if request.method == 'POST' else topics[0]
